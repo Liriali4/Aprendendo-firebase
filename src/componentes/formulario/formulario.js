@@ -1,7 +1,7 @@
 import { app } from "../../config/firebase";
 import { useState } from "react";
 import "./formulario.css"
-import { addDoc, collection, doc, getFirestore } from "firebase/firestore";
+import { addDoc, collection, getFirestore } from "firebase/firestore";
 
 export default function Formulario() {
     
@@ -14,7 +14,7 @@ export default function Formulario() {
         e.preventDefault()
         try {
             console.log("Aqui")
-            
+
         await addDoc(collection(bd, "Filmes"), {
             id: id,
             name: nome,
