@@ -58,4 +58,22 @@
         description: "O PRIMEIRO FILME DE DOIS"
         });
 
-                -->
+
+
+/*
+    async function exibir(e){
+      e.preventDefault()
+        const conteudo = doc(bd, "Filmes", "1");
+        const docSnap = await getDoc(conteudo);
+
+      if (docSnap.exists()) {
+
+        console.log("dados do documento:", docSnap.data());
+          
+      } else {
+        // doc.data() will be undefined in this case
+        console.log("Documento não encontrado!");
+      }
+      
+    }
+*/

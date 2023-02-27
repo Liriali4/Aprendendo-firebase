@@ -1,60 +1,64 @@
-import {  collection, getDocs, getFirestore, query, where } from "firebase/firestore";
+import { collection, getDocs, getFirestore, } from "firebase/firestore";
+import { useEffect, useState } from "react";
 import { app } from "../../config/firebase";
 
-
 export default function Lista() {
-
+    const [filmes, setFilmes] = useState([]);
     const bd = getFirestore(app);
+    
+    useEffect(() => {
+        pegardados()
+    }, []);
 
     async function pegardados(){
 
         const querySnapshot = await getDocs(collection(bd, "Filmes"));
+        let dados = []
         querySnapshot.forEach((doc) => {
+            
+            let id = doc.id;
+            let data = doc.data()
 
-            console.log(doc.id, " => ", doc.data());
-        });
+            dados.push({id, ...data})    
+   });    
+ 
+   setFilmes(dados)       
+ 
     }
 
     return (
         <div className="listadefilmes">
             <h2>Filmes</h2>
+
             <table border={"1"}>
                 <thead>
                     <tr>
-                        <td>Título</td>
+                        <td>Nome</td>
                         <td>Categoria</td>
-                        <td>Classificação</td>
+                        <td>classificação</td>
                         <td>ID</td>
+                        
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>The Boss Baby</td>
-                        <td>Animação</td>
-                        <td> + 5</td>
-                        <td>1</td>
-                    </tr>
-                    <tr>
-                        <td>The Boss Baby 2</td>
-                        <td>Animação</td>
-                        <td> + 5</td>
-                        <td>2</td>
-                    </tr>
-                    <tr>
-                        <td>Pedro O Pedro</td>
-                        <td>Animação</td>
-                        <td> + 7</td>
-                        <td>3</td>
-                    </tr>
-                    <tr>
-                        <td>Pedro O Pedro 2</td>
-                        <td>Animação</td>
-                        <td> + 7</td>
-                        <td>4</td>
-                    </tr>
-                </tbody>
+
+              <tbody >
+                {filmes && filmes.map(filme=>{
+                    return(
+                   
+            <tr>
+                <td>{filme.name }</td>
+                <td>{filme.categoria}</td>
+                <td>{filme.classificação}</td>
+                <td>{filme.id}</td>
+               
+            </tr>     
+                    )
+                })}
+              </tbody>
+
             </table>
-            <button onClick={pegardados}>Click</button>
+
         </div>
     )
+    
 }
