@@ -1,7 +1,7 @@
 import { app } from "../../config/firebase";
 import { useState } from "react";
 import "./formulario.css"
-import { addDoc, collection, doc, getFirestore, onSnapshot } from "firebase/firestore";
+import { doc, getFirestore, onSnapshot, setDoc } from "firebase/firestore";
 
 export default function Formulario() {
     
@@ -12,6 +12,7 @@ export default function Formulario() {
     
     const bd = getFirestore(app);
 
+    /*
     async function add(e){
         e.preventDefault()
         try {
@@ -26,7 +27,33 @@ export default function Formulario() {
             console.log("Erro" , error)
         }
     }
+*/
 
+        async function alterar(e){
+            e.preventDefault()
+
+            try {
+
+                await setDoc(doc(bd, "Filmes", "1"), {
+                    name: nome,
+                    id: id,
+                    categoria: categoria,
+                    classificação: classification,
+                  });
+
+                onSnapshot(doc(bd, "Filmes", "1"), (doc) => {
+                    console.log("Alterações: ", doc.id, "=>", doc.data());});
+
+            } catch (error) {
+                console.log("Erro" , error)
+            }
+        }
+
+
+        /*
+    const unsub = onSnapshot(doc(bd, "Filmes", "1"), (doc) => {
+        console.log("Alterações: ", doc.data());
+    });*/
 
     return (
         <>
@@ -75,10 +102,11 @@ export default function Formulario() {
 
                 <button 
                 className="pesquisar" 
-                onClick={add}
+                onClick={alterar}
                 >
                     Pesquisar
                 </button>
+                
             </form>
         </>
 

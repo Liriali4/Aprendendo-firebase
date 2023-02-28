@@ -17,15 +17,14 @@ export default function Lista() {
                 let data = doc.data()
 
                 dados.push({id, ...data})    
-            });  
+            });
+
         setFilmes(dados)
+
      }
      
      useEffect(() => {
         pegardados()
-        console.log("atualizado")   
-       
-
     }, []);
 
 
