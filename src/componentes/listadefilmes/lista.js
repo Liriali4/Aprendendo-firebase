@@ -49,8 +49,8 @@ export default function Lista() {
                 {filmes && filmes.map(filme=>{
                     return(
                    
-            <tr>
-                <td>{filme.name }</td>
+            <tr key={filme.id}>
+                <td >{filme.name }</td>
                 <td>{filme.categoria}</td>
                 <td>{filme.classificação}</td>
                 <td>{filme.id}</td>

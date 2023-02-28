@@ -42,12 +42,27 @@ export default function Formulario() {
                   });
 
                 onSnapshot(doc(bd, "Filmes", "1"), (doc) => {
-                    console.log("Alterações: ", doc.id, "=>", doc.data());});
+                    let data = new Date()
+                    console.log("completo", new Date(), "milisegundos",data.getTime(), "segundos", Math.floor(+new Date() / 1000))
+                    /*
+                    como pegar a hora exata da mudança
+
+                    console.log("Alterações: ", doc.id, "=>", doc.data(), "milisegundos",data.getTime(), "segundos", Math.floor(+new Date() / 1000),"ano", data.getFullYear());
+
+
+                    
+                    const response = Axios.get('http://localhost:8080/getclients')  
+                    this.setState({users: response.data})
+                    */
+
+                });
 
             } catch (error) {
                 console.log("Erro" , error)
             }
         }
+
+        
 
 
         /*
