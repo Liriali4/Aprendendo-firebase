@@ -1,7 +1,7 @@
 import { app } from "../../config/firebase";
 import { useState } from "react";
 import "./formulario.css"
-import { addDoc, collection, getFirestore } from "firebase/firestore";
+import { addDoc, collection, doc, getFirestore, onSnapshot } from "firebase/firestore";
 
 export default function Formulario() {
     
@@ -26,6 +26,7 @@ export default function Formulario() {
             console.log("Erro" , error)
         }
     }
+
 
     return (
         <>

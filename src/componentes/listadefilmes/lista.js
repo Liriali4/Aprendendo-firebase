@@ -4,28 +4,33 @@ import { app } from "../../config/firebase";
 
 export default function Lista() {
     const [filmes, setFilmes] = useState([]);
+    
     const bd = getFirestore(app);
     
-    useEffect(() => {
-        pegardados()
-    }, []);
-
     async function pegardados(){
 
-        const querySnapshot = await getDocs(collection(bd, "Filmes"));
-        let dados = []
-        querySnapshot.forEach((doc) => {
-            
-            let id = doc.id;
-            let data = doc.data()
+            const querySnapshot = await getDocs(collection(bd, "Filmes"));
+            let dados = []
+            querySnapshot.forEach((doc) => {
+                
+                let id = doc.id;
+                let data = doc.data()
 
-            dados.push({id, ...data})    
-   });    
- 
-   setFilmes(dados)       
- 
-    }
+                dados.push({id, ...data})    
+            });  
+        setFilmes(dados)
+     }
+     
+     useEffect(() => {
+        pegardados()
+        console.log("atualizado")   
+       
 
+    }, []);
+
+
+   
+       
     return (
         <div className="listadefilmes">
             <h2>Filmes</h2>
@@ -57,7 +62,7 @@ export default function Lista() {
               </tbody>
 
             </table>
-
+           
         </div>
     )
     
