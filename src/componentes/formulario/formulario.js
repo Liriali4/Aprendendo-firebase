@@ -1,7 +1,6 @@
 import { app } from "../../config/firebase";
 import { useState } from "react";
-import "./formulario.css"
-import { doc, getFirestore, onSnapshot, setDoc } from "firebase/firestore";
+import { addDoc, collection, doc, getFirestore, onSnapshot, } from "firebase/firestore";
 
 export default function Formulario() {
     
@@ -12,7 +11,7 @@ export default function Formulario() {
     
     const bd = getFirestore(app);
 
-    /*
+    
     async function add(e){
         e.preventDefault()
         try {
@@ -23,12 +22,33 @@ export default function Formulario() {
             categoria: categoria,
             classificação: classification,
         });  
+
+         onSnapshot(doc(bd, "Filmes", "1"), (doc) => {
+
+                    //let data = new Date()
+                    //let data1 = Date.now()
+                    //console.log("O momento da mudança e o local =>", data, "data1",data1)
+                    //console.log("completo", new Date(), "milisegundos",data.getTime(), "segundos", Math.floor(+new Date() / 1000))
+                    /*
+                    como pegar a hora exata da mudança
+
+                    console.log("Alterações: ", doc.id, "=>", doc.data(), "milisegundos",data.getTime(), "segundos", Math.floor(+new Date() / 1000),"ano", data.getFullYear());
+
+
+                    
+                    const response = Axios.get('http://localhost:8080/getclients')  
+                    this.setState({users: response.data})
+                    */
+                console.log("alterações",doc.data())
+                });
+
+
         } catch (error) {
             console.log("Erro" , error)
         }
     }
-*/
 
+        /*
         async function alterar(e){
             e.preventDefault()
 
@@ -41,29 +61,14 @@ export default function Formulario() {
                     classificação: classification,
                   });
 
-                onSnapshot(doc(bd, "Filmes", "1"), (doc) => {
-                    let data = new Date()
-                    console.log("completo", new Date(), "milisegundos",data.getTime(), "segundos", Math.floor(+new Date() / 1000))
-                    /*
-                    como pegar a hora exata da mudança
-
-                    console.log("Alterações: ", doc.id, "=>", doc.data(), "milisegundos",data.getTime(), "segundos", Math.floor(+new Date() / 1000),"ano", data.getFullYear());
-
-
-                    
-                    const response = Axios.get('http://localhost:8080/getclients')  
-                    this.setState({users: response.data})
-                    */
-
-                });
+               
 
             } catch (error) {
                 console.log("Erro" , error)
             }
         }
-
+        */
         
-
 
         /*
     const unsub = onSnapshot(doc(bd, "Filmes", "1"), (doc) => {
@@ -117,7 +122,7 @@ export default function Formulario() {
 
                 <button 
                 className="pesquisar" 
-                onClick={alterar}
+                onClick={add}
                 >
                     Pesquisar
                 </button>

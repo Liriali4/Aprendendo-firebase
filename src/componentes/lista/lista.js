@@ -2,6 +2,7 @@ import { collection, getDocs, getFirestore, } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { app } from "../../config/firebase";
 
+
 export default function Lista() {
     const [filmes, setFilmes] = useState([]);
     
