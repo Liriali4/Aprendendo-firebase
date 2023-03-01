@@ -1,36 +1,11 @@
-import "./login.css"
-import { useState } from "react"
-import { getAuth, signInWithEmailAndPassword, } from "firebase/auth";
 
-export default function Login() {
-    const [email, setEmail] = useState("");
-    const [senha, setSenha] = useState("");
+export default function Alterarpass(){
 
-function Handlelogin (e){
-    e.preventDefault()
-    console.log(email, senha)
-
-    const auth = getAuth();
-    signInWithEmailAndPassword(auth, email, senha)
-      .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-        console.log("login", user)
-        // ...
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log("ERRO")
-      });
-      
+    const [oldpass, setOldpass] = useState("");
+    const [newpass, setNewpass] = useState("");
 
 
-    setEmail("")
-    setSenha("") 
-
-}
-    return (
+    return(
         <main>
             <div className="container">
                 <h1>Login</h1>
@@ -57,12 +32,9 @@ function Handlelogin (e){
                             ></input>
 
                         <button className="entrar" onClick={Handlelogin} > Entrar</button>
-                        <a href="/alterarpass">Alterar password</a>
                     </form>
                 </div>
             </div>
         </main>
-        
     )
- 
 }
