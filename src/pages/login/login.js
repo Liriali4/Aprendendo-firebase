@@ -1,6 +1,8 @@
 import "./login.css"
 import { useState } from "react"
 import { getAuth, signInWithEmailAndPassword, } from "firebase/auth";
+import { Link } from "react-router-dom";
+
 
 export default function Login() {
     const [email, setEmail] = useState("");
@@ -18,9 +20,7 @@ function Handlelogin (e){
         console.log("login", user)
         // ...
       })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
+      .catch(() => {
         console.log("ERRO")
       });
       
@@ -55,8 +55,9 @@ function Handlelogin (e){
                             value={senha}
                             onChange={(event)=> setSenha(event.target.value)}
                             ></input>
-
+                            <Link to={"/home"}>
                         <button className="entrar" onClick={Handlelogin} > Entrar</button>
+                        </Link>
                         <a href="/alterarpass">Alterar password</a>
                     </form>
                 </div>
