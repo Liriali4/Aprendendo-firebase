@@ -1,12 +1,13 @@
 import "./login.css"
 import { useState } from "react"
 import { getAuth, signInWithEmailAndPassword, } from "firebase/auth";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 export default function Login() {
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
+    const navigate = useNavigate();
 
 function Handlelogin (e){
     e.preventDefault()
@@ -15,11 +16,12 @@ function Handlelogin (e){
     const auth = getAuth();
     signInWithEmailAndPassword(auth, email, senha)
       .then((userCredential) => {
-        // Signed in
+
         const user = userCredential.user;
         console.log("login", user)
-        // ...
-      })
+        navigate("/home")
+
+    })
       .catch(() => {
         console.log("ERRO")
       });
@@ -55,9 +57,7 @@ function Handlelogin (e){
                             value={senha}
                             onChange={(event)=> setSenha(event.target.value)}
                             ></input>
-                            <Link to={"/home"}>
                         <button className="entrar" onClick={Handlelogin} > Entrar</button>
-                        </Link>
                         <a href="/alterarpass">Alterar password</a>
                     </form>
                 </div>

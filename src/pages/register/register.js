@@ -1,6 +1,6 @@
 import "./register.css"
 import { useState } from "react"
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { auth } from "../../config/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 
@@ -9,6 +9,8 @@ export default function Register() {
     const [telefone, setTelefone] = useState("");
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
+    const navigate = useNavigate();
+
 
 function createcount (e){
     e.preventDefault()
@@ -17,17 +19,15 @@ function createcount (e){
     
     createUserWithEmailAndPassword(auth, email, senha)
     .then((userCredential) => {
-        // Signed in
         const user = userCredential.user;
-        // ...
+        navigate("/home")
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        // ..
+      
       });
-
-
+     
 }
     return (
         <main>
@@ -74,9 +74,9 @@ function createcount (e){
                             onChange={(event)=> setSenha(event.target.value)}
                             ></input>
 
-                        <Link to={'/home'}>
+                        
                         <button className="entrar" onClick={createcount} > Entrar</button>
-                        </Link>
+                       
                     </form>
                 </div>
             </div>
