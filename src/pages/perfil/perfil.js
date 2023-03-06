@@ -10,7 +10,7 @@ export default function Perfil(){
         event.preventDefault()
         
         const storage = getStorage();
-        const storageRef = ref(storage, imgUrl);
+        const storageRef = ref(storage, `imagens/${imgUrl.name}`);
 
         
         const metadata = {
@@ -25,7 +25,7 @@ export default function Perfil(){
     return(
         <main>
             <div className="imagem">
-                Imagem
+               {imgUrl && <img src={imgUrl} alt="imagem" />}
             </div>
             <div className="pegarimg">
                 <form className="formperfil"  >
