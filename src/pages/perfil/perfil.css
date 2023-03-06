@@ -1,0 +1,27 @@
+.imagem{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+    width: 300px;
+    border-radius: 50%;
+    background-color: #c9c;
+}
+
+.formperfil{
+    width: 300px;
+    height: 300px;
+    display: flex;
+    background-color: rgb(103, 194, 236);
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+.formperfil input{
+    width: 100%;
+}
+
+.carregarimg{
+    width: 70%;
+    background-color: #bdbdbd;
+}
